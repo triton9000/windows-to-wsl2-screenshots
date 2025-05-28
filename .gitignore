@@ -5,6 +5,8 @@
 *.gif
 *.bmp
 
+!demo-screenshot.png
+
 # Log files
 *.log
 monitor.log
