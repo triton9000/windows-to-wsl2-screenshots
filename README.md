@@ -61,7 +61,9 @@ cat ~/.screenshots/monitor.log
 - Created specifically for Claude Code workflows
 - Also works with any tool that needs screenshot file paths
 - **Uses PowerShell ExecutionPolicy Bypass** - required for the automation to work, only affects this specific script
+- **Polls for clipboard changes** was the simplest solution, you could bump up the time from 500ms if wanted.
 - **Developed with Claude Code** - if you need customizations or run into issues, try asking Claude Code to help modify the scripts!
+
 
 ---
 
