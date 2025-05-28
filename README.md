@@ -1,6 +1,6 @@
 # Windows-to-WSL2 Screenshot Bridge
 
-🚀 **Auto-save Windows screenshots to WSL2 and paste paths directly into Claude Code, VS Code, or any application**
+🚀 **Auto-save Windows screenshots to WSL2 and paste paths directly into Claude Code, VS Code, or any application that uses WSL2**
 
 This tool was created to solve the annoying workflow of taking screenshots in Windows and getting them into Claude Code in WSL2. It automatically saves your screenshots and copies the file path to your clipboard so you can just Ctrl+V into Claude Code, VS Code, or any application that needs file paths.
 
@@ -9,7 +9,7 @@ This tool was created to solve the annoying workflow of taking screenshots in Wi
 1. **Take screenshot** (Win+Shift+S, Win+PrintScreen, etc.)
 2. **Auto-saves** to `~/.screenshots/` in WSL2  
 3. **Auto-copies path** to clipboard
-4. **Paste into Claude Code, VS Code, or any app** with Ctrl+V
+4. **Paste into Claude Code, VS Code, or any app that uses WSL2** with Ctrl+V
 
 Perfect for Claude Code workflows, VS Code documentation, or any development scenario where you need to quickly share screenshots.
 
@@ -41,13 +41,13 @@ check-screenshot-status
 stop-screenshot-monitor
 ```
 
-Now just take screenshots and paste paths directly into Claude Code, VS Code, or any application!
+Now just take screenshots and paste paths directly into Claude Code, VS Code, or any application thae uses WSL2!
 
 ## 🎬 Demo
 
 ![Screenshot showing the tool in action](demo-screenshot.png)
 
-*The tool automatically detects screenshots, saves them, and copies the path to your clipboard - ready for instant pasting into Claude Code, VS Code, or any application!*
+*The tool automatically detects screenshots, saves them, and copies the path to your clipboard - ready for instant pasting into Claude Code, VS Code, or any application that uses WSL2!*
 
 ## Troubleshooting
 
@@ -65,7 +65,7 @@ cat ~/.screenshots/monitor.log
 
 - Tested on one system so far (mine) - your results may vary
 - Created specifically for Claude Code workflows  
-- Works great with VS Code, documentation tools, and any application needing file paths
+- Works great with VS Code, documentation tools, any WSL2 application
 - **Uses PowerShell ExecutionPolicy Bypass** - required for the automation to work, only affects this specific script
 - **Polls for clipboard changes** was the simplest solution, you could bump up the time from 500ms if wanted.
 - **Developed with Claude Code** - if you need customizations or run into issues, try asking Claude Code to help modify the scripts!
