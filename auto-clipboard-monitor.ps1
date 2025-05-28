@@ -1,10 +1,32 @@
 # True automatic clipboard monitor using Windows events
 param(
-    [string]$SaveDirectory = "\\wsl.localhost\Ubuntu-20.04\home\droopy\.screenshots"
+    [string]$SaveDirectory = "~/.screenshots",
+    [string]$WslDistro = "auto"
 )
 
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
+
+# Convert the tilde path to WSL format
+if ($SaveDirectory -eq "~/.screenshots") {
+    # Try to auto-detect WSL distribution if auto mode is used
+    if ($WslDistro -eq "auto") {
+        $WslDistros = @(wsl.exe -l -q | Where-Object { 
+            $_ -and $_.Trim() -ne "" -and $_ -notlike "*docker*" 
+        } | ForEach-Object { 
+            $_.Trim() -replace '\s+', '' -replace '\x00', ''
+        })
+        if ($WslDistros.Count -gt 0) {
+            $WslDistro = $WslDistros[0]
+            Write-Host "Auto-detected WSL distribution: $WslDistro"
+        }
+    }
+    
+    # Get the actual WSL username instead of Windows username
+    $WslUsername = wsl.exe -d $WslDistro -e whoami
+    $WslUsername = $WslUsername.Trim()
+    $SaveDirectory = "\\wsl.localhost\$WslDistro\home\$WslUsername\.screenshots"
+}
 
 if (!(Test-Path $SaveDirectory)) {
     New-Item -ItemType Directory -Path $SaveDirectory -Force | Out-Null
@@ -25,14 +47,14 @@ function Set-BothClipboards($path) {
     try {
         [System.Windows.Forms.Clipboard]::SetText($path)
         $wslCommand = "echo '$path' | clip.exe"
-        wsl.exe -e bash -c $wslCommand
+        wsl.exe -d $WslDistro -e bash -c $wslCommand
         return $true
     } catch {
         Start-Sleep -Milliseconds 200
         try {
             [System.Windows.Forms.Clipboard]::SetText($path)
             $wslCommand = "echo '$path' | clip.exe" 
-            wsl.exe -e bash -c $wslCommand
+            wsl.exe -d $WslDistro -e bash -c $wslCommand
             return $true
         } catch {
             Write-Warning "Could not set clipboard: $_"
