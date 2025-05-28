@@ -43,6 +43,12 @@ stop-screenshot-monitor
 
 Now just take screenshots and paste paths directly into Claude Code!
 
+## 🎬 Demo
+
+![Screenshot showing the tool in action](demo-screenshot.png)
+
+*The tool automatically detects screenshots, saves them, and copies the path to your clipboard - ready for instant pasting into Claude Code!*
+
 ## Troubleshooting
 
 **Clipboard not working?** 
