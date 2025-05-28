@@ -17,7 +17,7 @@ Perfect for the Claude Code workflow where you need to quickly share screenshots
 
 - Windows 10/11 with WSL2
 - Any WSL2 distribution (Ubuntu, Debian, etc.)
-- Works best with **Windows Terminal** (from Microsoft Store)
+- Works with **[Windows Terminal](https://apps.microsoft.com/detail/9n0dx20hk701)** (from Microsoft)
 
 ## Installation
 
@@ -52,7 +52,7 @@ Now just take screenshots and paste paths directly into Claude Code!
 ## Troubleshooting
 
 **Clipboard not working?** 
-- Use Windows Terminal (Microsoft Store app) instead of basic Ubuntu terminal
+- Use **[Windows Terminal](https://apps.microsoft.com/detail/9n0dx20hk701)** instead of basic Ubuntu terminal
 - Basic WSL terminals have clipboard sync issues
 
 **Monitor not starting?**
