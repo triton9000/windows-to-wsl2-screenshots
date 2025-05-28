@@ -1,6 +1,6 @@
 # True automatic clipboard monitor using Windows events
 param(
-    [string]$SaveDirectory = "\\wsl.localhost\Ubuntu-20.04\home\droopy\.screenshots"
+    [string]$SaveDirectory = "\\wsl.localhost\Ubuntu-20.04\home\droopy\.clipboard"
 )
 
 Add-Type -AssemblyName System.Windows.Forms
@@ -10,7 +10,7 @@ if (!(Test-Path $SaveDirectory)) {
     New-Item -ItemType Directory -Path $SaveDirectory -Force | Out-Null
 }
 
-Write-Host "WINDOWS-TO-WSL2 SCREENSHOT AUTOMATION STARTED"
+Write-Host "AUTO-CLIPBOARD MONITOR STARTED"
 Write-Host "Auto-saving images to: $SaveDirectory"
 Write-Host "Press Ctrl+C to stop"
 
@@ -57,8 +57,8 @@ while ($true) {
                 if ($currentHash -ne $previousHash) {
                     Write-Host "New image detected in clipboard"
                     
-                    $timestamp = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
-                    $filename = "screenshot_$timestamp.png"
+                    $timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
+                    $filename = "clipboard_$timestamp.png"
                     $filepath = Join-Path $SaveDirectory $filename
                     $image.Save($filepath, [System.Drawing.Imaging.ImageFormat]::Png)
                     
@@ -66,7 +66,7 @@ while ($true) {
                     if (Test-Path $latestPath) { Remove-Item $latestPath -Force }
                     Copy-Item $filepath $latestPath -Force
                     
-                    $relativePath = "~/.screenshots/$filename"
+                    $relativePath = "~/.clipboard/$filename"
                     Start-Sleep -Milliseconds 1000
                     
                     if (Set-BothClipboards $relativePath) {
@@ -88,7 +88,7 @@ while ($true) {
         
         if ($newFiles) {
             foreach ($file in $newFiles) {
-                $relativePath = "~/.screenshots/$($file.Name)"
+                $relativePath = "~/.clipboard/$($file.Name)"
                 Copy-Item $file.FullName (Join-Path $SaveDirectory "latest.png") -Force
                 
                 if (Set-BothClipboards $relativePath) {
