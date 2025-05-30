@@ -5,6 +5,7 @@
 *.gif
 *.bmp
 
+
 !demo-screenshot.png
 
 # Log files
@@ -49,3 +50,4 @@ __pycache__/
 # Keep the screenshots directory structure but ignore contents
 screenshots/.gitkeep
 !screenshots/.gitkeep
+.claude/

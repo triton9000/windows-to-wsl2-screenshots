@@ -88,12 +88,13 @@ while ($true) {
                     if (Test-Path $latestPath) { Remove-Item $latestPath -Force }
                     Copy-Item $filepath $latestPath -Force
                     
-                    $relativePath = "~/.screenshots/$filename"
+                    # Create full path for WSL2 instead of using tilde
+                    $wslPath = "/home/$WslUsername/.screenshots/$filename"
                     Start-Sleep -Milliseconds 1000
                     
-                    if (Set-BothClipboards $relativePath) {
+                    if (Set-BothClipboards $wslPath) {
                         Write-Host "AUTO-SAVED: $filename"
-                        Write-Host "Path ready for Ctrl+V: $relativePath"
+                        Write-Host "Path ready for Ctrl+V: $wslPath"
                     }
                     
                     $previousHash = $currentHash
@@ -110,12 +111,13 @@ while ($true) {
         
         if ($newFiles) {
             foreach ($file in $newFiles) {
-                $relativePath = "~/.screenshots/$($file.Name)"
+                # Create full path for WSL2 instead of using tilde
+                $wslPath = "/home/$WslUsername/.screenshots/$($file.Name)"
                 Copy-Item $file.FullName (Join-Path $SaveDirectory "latest.png") -Force
                 
-                if (Set-BothClipboards $relativePath) {
+                if (Set-BothClipboards $wslPath) {
                     Write-Host "NEW FILE DETECTED: $($file.Name)"
-                    Write-Host "Path ready for Ctrl+V: $relativePath"
+                    Write-Host "Path ready for Ctrl+V: $wslPath"
                 }
             }
             $lastFileTime = $currentTime
