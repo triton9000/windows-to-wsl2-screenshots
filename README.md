@@ -27,7 +27,7 @@ Perfect for Claude Code workflows, VS Code documentation, or any development sce
 gh repo clone jddev273/windows-to-wsl2-screenshots
 cd windows-to-wsl2-screenshots
 source screenshot-functions.sh
-start-screenshot-monitor
+check-screenshot-monitor
 ```
 
 ## Usage
