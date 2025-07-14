@@ -23,11 +23,26 @@ Perfect for Claude Code workflows, VS Code documentation, or any development sce
 
 ## Installation
 
+### 🚀 One-Line Install (Recommended)
+
+Just run this command in your WSL2 terminal:
+
 ```bash
-gh repo clone jddev273/windows-to-wsl2-screenshots
+curl -sSL https://raw.githubusercontent.com/triton9000/windows-to-wsl2-screenshots/master/install.sh | bash
+```
+
+This will:
+- ✅ Install the tool
+- ✅ Set up auto-start (runs automatically when you open new terminals)
+- ✅ Start the monitor immediately
+- ✅ Create the screenshots directory
+
+### Manual Install
+
+```bash
+git clone https://github.com/triton9000/windows-to-wsl2-screenshots.git
 cd windows-to-wsl2-screenshots
-source screenshot-functions.sh
-check-screenshot-monitor
+./install.sh
 ```
 
 ## Usage
@@ -50,6 +65,13 @@ Now just take screenshots and paste paths directly into Claude Code, VS Code, or
 ![Screenshot showing the tool in action](demo-screenshot.png)
 
 *The tool automatically detects screenshots, saves them, and copies the path to your clipboard - ready for instant pasting into Claude Code, VS Code, or any application that uses WSL2!*
+
+## 🆕 New Features in This Fork
+
+- **One-Line Installation** - Share a single command with your team
+- **Auto-Start on Terminal Launch** - No need to manually start the monitor
+- **Team-Friendly Installer** - Handles all setup automatically
+- **Offline Installation Support** - Create shareable packages with `./create-package.sh`
 
 ## Troubleshooting
 
